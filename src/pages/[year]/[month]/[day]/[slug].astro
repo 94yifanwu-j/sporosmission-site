@@ -1,0 +1,151 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+/* WordPress-style permalinks: /YYYY/MM/DD/<slug>/ */
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => {
+    const d = post.data.date;
+    return {
+      params: {
+        year: String(d.getUTCFullYear()),
+        month: String(d.getUTCMonth() + 1).padStart(2, '0'),
+        day: String(d.getUTCDate()).padStart(2, '0'),
+        slug: post.data.slug,
+      },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmt = (d: Date) =>
+  `${d.getUTCFullYear()}年${d.getUTCMonth() + 1}月${d.getUTCDate()}日`;
+
+const description =
+  post.data.description ?? `${post.data.title} — 施普絡世宣教中心 Sporos Mission Church`;
+---
+
+<BaseLayout title={`${post.data.title} | 施普絡世宣教中心`} description={description} lang="zh">
+  <section class="section">
+    <div class="container article-wrap">
+      <a class="back" href="/blog">← 返回 Blog</a>
+      <article class="card">
+        <header>
+          <time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>
+          <h1>{post.data.title}</h1>
+          {
+            post.data.category && (
+              <span class="post-cat">{post.data.category}</span>
+            )
+          }
+          {
+            post.data.tags && post.data.tags.length > 0 && (
+              <p class="tags">
+                {post.data.tags.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </p>
+            )
+          }
+        </header>
+        <div class="article-body">
+          <Content />
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .article-wrap {
+    max-width: 48rem;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: var(--p-space-6);
+    font-weight: 500;
+  }
+
+  article.card {
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+  }
+
+  header {
+    margin-bottom: var(--p-space-8);
+    padding-bottom: var(--p-space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  header time {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  header h1 {
+    font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+    margin: 0.5rem 0 0.8rem;
+  }
+
+  .post-cat {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-brand-strong);
+    background: var(--badge-bg);
+    border-radius: var(--p-radius-pill);
+    padding: 0.25rem 0.95rem;
+  }
+
+  .tags {
+    margin: 0.8rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--p-radius-pill);
+    padding: 0.15rem 0.8rem;
+  }
+
+  .article-body :global(p) {
+    margin-bottom: 1.2rem;
+  }
+
+  .article-body :global(h2) {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+  }
+
+  .article-body :global(h3) {
+    font-size: 1.15rem;
+    margin-top: 1.6rem;
+  }
+
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    padding-left: 1.4rem;
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .article-body :global(blockquote) {
+    border-left: 3px solid var(--color-brand-mist);
+    margin: 1.2rem 0;
+    padding: 0.4rem 0 0.4rem 1.2rem;
+    color: var(--color-ink-soft);
+  }
+
+  .article-body :global(img) {
+    border-radius: var(--p-radius-md);
+  }
+</style>

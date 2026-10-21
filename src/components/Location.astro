@@ -1,0 +1,164 @@
+---
+/* 週日崇拜地點/時間 Service Location/Time */
+const morning = [
+  { zh: '中文堂 | 兒童主日學', en: 'Chinese | Children Sunday School', time: '10:00AM – 11:00AM' },
+  { zh: '成人主日學', en: 'Adult Sunday School', time: '11:15AM – 12:15PM' },
+  { zh: '午餐', en: 'Lunch', time: '12:20PM – 1:00PM' },
+  { zh: '健康跳舞班', en: 'Dance Class', time: '1:00PM – 2:00PM' },
+];
+
+const afternoon = [
+  { zh: '午餐', en: 'Lunch', time: '12:30PM – 1:30PM' },
+  { zh: '中英文雙語堂', en: 'Chinese + English', time: '1:30PM – 2:30PM' },
+];
+---
+
+<section id="location" class="section">
+  <div class="container">
+    <span class="section-kicker">聚會地點 / 時間</span>
+    <h2 class="section-title">Service Location / Time</h2>
+    <p class="section-sub">歡迎第一次來的朋友，聚會前請先與我們聯繫。</p>
+
+    <div class="loc-grid">
+      <article class="card">
+        <p class="loc-label">早上 Morning</p>
+        <h3>Poway</h3>
+        <address>14280 Poway Rd<br />Poway, CA 92064, USA</address>
+        <ul class="schedule">
+          {
+            morning.map((s) => (
+              <li>
+                <div>
+                  <strong>{s.zh}</strong>
+                  <span>{s.en}</span>
+                </div>
+                <time>{s.time}</time>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+
+      <article class="card">
+        <p class="loc-label">下午 Afternoon</p>
+        <h3>La Jolla</h3>
+        <address>9595 La Jolla Shores Drive<br />La Jolla, CA 92037, USA</address>
+        <ul class="schedule">
+          {
+            afternoon.map((s) => (
+              <li>
+                <div>
+                  <strong>{s.zh}</strong>
+                  <span>{s.en}</span>
+                </div>
+                <time>{s.time}</time>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+
+    <div class="friday-note card">
+      <h3>週五晚上 <span>Friday Evening</span></h3>
+      <p>
+        查經團契 Bible Study Fellowship — 6:30PM–8:00PM（14280 Poway Rd, Poway）<br />
+        UCSD 學生團契 — 6:00PM–8:00PM（9595 La Jolla Shores Drive, La Jolla）<br />
+        詳情請洽 <a href="tel:+19519032666">(951)-903-2666</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .loc-grid {
+    display: grid;
+    gap: var(--p-space-6);
+    grid-template-columns: 1fr;
+    margin-bottom: var(--p-space-6);
+  }
+
+  @media (min-width: 768px) {
+    .loc-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .loc-label {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-brand-strong);
+    background: var(--badge-bg);
+    border-radius: var(--p-radius-pill);
+    padding: 0.3rem 0.95rem;
+    margin-bottom: var(--p-space-3);
+  }
+
+  .card h3 {
+    font-size: var(--text-h3);
+    margin-bottom: 0.3rem;
+  }
+
+  address {
+    font-style: normal;
+    color: var(--color-muted);
+    margin-bottom: var(--p-space-6);
+    line-height: 1.7;
+  }
+
+  .schedule {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+  }
+
+  .schedule li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--p-space-4);
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .schedule li div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .schedule strong {
+    font-weight: 700;
+  }
+
+  .schedule span {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+
+  .schedule time {
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    color: var(--color-brand-strong);
+    white-space: nowrap;
+    font-size: 0.92rem;
+  }
+
+  .friday-note {
+    text-align: center;
+  }
+
+  .friday-note h3 span {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.85em;
+    color: var(--color-muted);
+  }
+
+  .friday-note p {
+    margin: 0;
+    line-height: 2;
+  }
+</style>

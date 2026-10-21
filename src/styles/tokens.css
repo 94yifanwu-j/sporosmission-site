@@ -1,0 +1,335 @@
+/* ==========================================================================
+   Sporos Mission Church — Design Tokens
+   Three-layer architecture (primitive → semantic → component),
+   following the ui-ux-pro-max design-system skill.
+   Identity: warm, welcoming, trustworthy. Rose accent nods to the
+   current brand (pink CTA). Chinese support via Noto Sans/Serif TC.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   LAYER 1 — PRIMITIVE TOKENS (raw values, never use directly in components)
+   Palette adapted from the skill's Church/Religious Organization palette
+   (spiritual warmth + gold), re-anchored on rose per brand requirement.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Rose — brand accent scale */
+  --p-rose-50: #fdf2f4;
+  --p-rose-100: #fce7ec;
+  --p-rose-200: #f9cfdb;
+  --p-rose-300: #f3a7bc;
+  --p-rose-400: #ea7594;
+  --p-rose-500: #dd4d74;
+  --p-rose-600: #c93360;
+  --p-rose-700: #a92650;
+  --p-rose-800: #882344;
+  --p-rose-900: #6f1f3a;
+
+  /* Gold — secondary accent */
+  --p-gold-200: #f5d9a8;
+  --p-gold-400: #e3a94f;
+  --p-gold-500: #d18f2c;
+  --p-gold-600: #b07218;
+  --p-gold-700: #8a5a14;
+
+  /* Warm sand — surfaces */
+  --p-sand-50: #fdfaf5;
+  --p-sand-100: #f8f1e6;
+  --p-sand-200: #f0e3cf;
+  --p-sand-300: #e4d0b4;
+
+  /* Ink — warm neutrals for text */
+  --p-ink-950: #211915;
+  --p-ink-800: #3d322b;
+  --p-ink-600: #5f534a;
+  --p-ink-500: #7a6d62;
+  --p-ink-300: #c9bdaf;
+  --p-ink-200: #e3d9cb;
+
+  /* Plum — dark section backgrounds */
+  --p-plum-800: #3a1c26;
+  --p-plum-900: #2b141d;
+  --p-plum-950: #1f0e14;
+
+  --p-white: #ffffff;
+
+  /* Typography */
+  --p-font-display: "Noto Serif", "Noto Serif TC", "Songti TC", Georgia, serif;
+  --p-font-body: "Noto Sans", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+
+  /* Spacing scale (4px base) */
+  --p-space-1: 0.25rem;
+  --p-space-2: 0.5rem;
+  --p-space-3: 0.75rem;
+  --p-space-4: 1rem;
+  --p-space-6: 1.5rem;
+  --p-space-8: 2rem;
+  --p-space-12: 3rem;
+  --p-space-16: 4rem;
+  --p-space-24: 6rem;
+
+  /* Radius */
+  --p-radius-sm: 0.5rem;
+  --p-radius-md: 0.9rem;
+  --p-radius-lg: 1.25rem;
+  --p-radius-pill: 999px;
+
+  /* Motion */
+  --p-transition-fast: 180ms ease;
+  --p-transition-med: 320ms ease;
+
+  /* ------------------------------------------------------------------------
+     LAYER 2 — SEMANTIC TOKENS (meaning, not values)
+     ------------------------------------------------------------------------ */
+  --color-brand: var(--p-rose-700);        /* #a92650 — 7.0:1 on white */
+  --color-brand-strong: var(--p-rose-800); /* hover / emphasis */
+  --color-brand-soft: var(--p-rose-50);     /* tinted backgrounds */
+  --color-brand-mist: var(--p-rose-100);
+
+  --color-gold: var(--p-gold-600);
+  --color-gold-soft: var(--p-gold-200);
+
+  --color-ink: var(--p-ink-950);
+  --color-ink-soft: var(--p-ink-800);
+  --color-muted: var(--p-ink-600);          /* 7.4:1 on sand-50 */
+
+  --color-surface: var(--p-white);
+  --color-surface-warm: var(--p-sand-50);
+  --color-surface-tint: var(--p-sand-100);
+
+  --color-dark: var(--p-plum-950);
+  --color-dark-soft: var(--p-plum-900);
+  --color-on-dark: #f7ecdd;                 /* warm ivory text on dark */
+  --color-on-dark-muted: #cdb9a4;
+
+  --color-border: var(--p-ink-200);
+  --color-border-dark: rgba(247, 236, 221, 0.16);
+
+  --font-display: var(--p-font-display);
+  --font-body: var(--p-font-body);
+
+  /* ------------------------------------------------------------------------
+     LAYER 3 — COMPONENT TOKENS
+     ------------------------------------------------------------------------ */
+  --container-max: 72rem;
+  --container-pad: 1.25rem;
+  --section-pad: clamp(3.5rem, 8vw, 6rem);
+
+  --btn-bg: var(--color-brand);
+  --btn-bg-hover: var(--color-brand-strong);
+  --btn-text: var(--p-white);
+  --btn-radius: var(--p-radius-pill);
+  --btn-pad: 0.9rem 2.1rem;
+  --btn-weight: 700;
+
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border);
+  --card-radius: var(--p-radius-lg);
+  --card-shadow: 0 12px 32px rgba(169, 38, 80, 0.09);
+  --card-shadow-hover: 0 18px 44px rgba(169, 38, 80, 0.16);
+
+  --header-bg: rgba(253, 250, 245, 0.9);
+  --header-border: var(--color-border);
+
+  --badge-bg: var(--color-brand-soft);
+  --badge-text: var(--color-brand-strong);
+
+  --text-hero: clamp(2.4rem, 5.6vw, 4rem);
+  --text-h2: clamp(1.7rem, 3.4vw, 2.5rem);
+  --text-h3: clamp(1.2rem, 2.2vw, 1.5rem);
+  --text-lead: clamp(1.05rem, 1.8vw, 1.25rem);
+}
+
+/* --------------------------------------------------------------------------
+   BASE STYLES
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-surface-warm);
+  line-height: 1.75;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.35;
+  color: var(--color-ink);
+  margin: 0 0 var(--p-space-4);
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 var(--p-space-4);
+}
+
+a {
+  color: var(--color-brand);
+  text-decoration: none;
+  transition: color var(--p-transition-fast);
+}
+
+a:hover {
+  color: var(--color-brand-strong);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--p-gold-400);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: var(--section-pad);
+}
+
+.section-kicker {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  background: var(--badge-bg);
+  border-radius: var(--p-radius-pill);
+  padding: 0.35rem 1rem;
+  margin-bottom: var(--p-space-4);
+}
+
+.section-title {
+  font-size: var(--text-h2);
+  margin-bottom: var(--p-space-2);
+}
+
+.section-sub {
+  color: var(--color-muted);
+  font-size: var(--text-lead);
+  margin-bottom: var(--p-space-8);
+}
+
+.btn {
+  display: inline-block;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-weight: var(--btn-weight);
+  border-radius: var(--btn-radius);
+  padding: var(--btn-pad);
+  border: 0;
+  cursor: pointer;
+  transition: background var(--p-transition-fast), transform var(--p-transition-fast), box-shadow var(--p-transition-fast);
+  box-shadow: 0 8px 20px rgba(169, 38, 80, 0.28);
+}
+
+.btn:hover {
+  background: var(--btn-bg-hover);
+  color: var(--btn-text);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(169, 38, 80, 0.34);
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  box-shadow: 0 8px 20px rgba(176, 114, 24, 0.3);
+}
+
+.btn-gold:hover {
+  background: var(--color-gold);
+  filter: brightness(0.94);
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--p-space-8);
+  transition: box-shadow var(--p-transition-med), transform var(--p-transition-med);
+}
+
+/* Dark sections (e.g. Give) */
+.section-dark {
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3 {
+  color: var(--color-on-dark);
+}
+
+.section-dark .section-sub {
+  color: var(--color-on-dark-muted);
+}
+
+.section-dark .card {
+  background: var(--color-dark-soft);
+  border-color: var(--color-border-dark);
+  box-shadow: none;
+  color: var(--color-on-dark);
+}
+
+.section-dark a {
+  color: var(--p-rose-200);
+}
+
+.section-dark a:hover {
+  color: var(--p-white);
+}
+
+/* Responsive video embeds */
+.video-16x9 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--p-radius-md);
+  overflow: hidden;
+  background: var(--p-plum-900);
+}
+
+.video-16x9 iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

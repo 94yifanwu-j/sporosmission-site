@@ -1,0 +1,133 @@
+---
+/* Give — 奉獻 (dark section) */
+---
+
+<section id="give" class="section section-dark">
+  <div class="container">
+    <span class="section-kicker">奉獻</span>
+    <h2 class="section-title">Give</h2>
+    <p class="section-sub">
+      謝謝您的支持，有其他問題歡迎聯絡我們！
+    </p>
+
+    <div class="give-grid">
+      <div class="card">
+        <h3>支票 <span class="h3-en">Check</span></h3>
+        <dl>
+          <dt>抬頭 Pay to</dt>
+          <dd>Sporos Mission Church 或 SMC</dd>
+          <dt>郵寄至 Mail to</dt>
+          <dd>
+            Sporos Mission Church<br />
+            ATTN: Johnny Hwang<br />
+            4748 Caminito Diablo, San Diego, CA 92130
+          </dd>
+        </dl>
+      </div>
+
+      <div class="card">
+        <h3>電子奉獻 <span class="h3-en">Online</span></h3>
+        <dl>
+          <dt>Zelle</dt>
+          <dd>
+            請付款到：
+            <a href="mailto:sporosmission@gmail.com">sporosmission@gmail.com</a>
+            <br />
+            請註明奉獻的用途及意義、奉獻人電話以及相關資訊，以便日後查詢。
+          </dd>
+          <dt>銀行電匯 Wire transfer</dt>
+          <dd>
+            請聯繫辦公室取得銀行電匯相關資訊：
+            <a href="mailto:sporosmission@gmail.com">sporosmission@gmail.com</a>
+          </dd>
+        </dl>
+        <p class="zeffy">
+          <a
+            class="btn btn-gold"
+            href="https://www.zeffy.com/en-US/donation-form/general-donation-204"
+            target="_blank"
+            rel="noopener"
+          >
+            線上信用卡奉獻（Zeffy，免手續費）
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <ul class="give-notes">
+      <li>* $250 以下小額奉獻不設退稅收據</li>
+      <li>* 愛宴奉獻不設退稅收據</li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .section-kicker {
+    background: rgba(253, 231, 236, 0.14);
+    color: var(--p-rose-200);
+  }
+
+  .give-grid {
+    display: grid;
+    gap: var(--p-space-6);
+    grid-template-columns: 1fr;
+    margin-bottom: var(--p-space-8);
+  }
+
+  @media (min-width: 768px) {
+    .give-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .card h3 {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: var(--p-space-4);
+    padding-bottom: var(--p-space-3);
+    border-bottom: 1px solid var(--color-border-dark);
+  }
+
+  .h3-en {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--color-on-dark-muted);
+  }
+
+  dl {
+    margin: 0;
+    display: grid;
+    gap: var(--p-space-4);
+  }
+
+  dt {
+    font-weight: 700;
+    color: var(--p-gold-400);
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+  }
+
+  dd {
+    margin: 0.2rem 0 0;
+    color: var(--color-on-dark);
+    line-height: 1.8;
+  }
+
+  .zeffy {
+    margin-top: var(--p-space-6);
+    margin-bottom: 0;
+  }
+
+  .give-notes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.3rem;
+    color: var(--color-on-dark-muted);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+</style>

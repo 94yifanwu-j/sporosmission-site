@@ -1,0 +1,181 @@
+---
+const socials = [
+  { name: 'YouTube', href: 'https://www.youtube.com/@sporos-mission-church' },
+  { name: 'Instagram', href: 'https://www.instagram.com/sporosmission' },
+  { name: 'Line 群組', href: 'https://line.me/ti/g/Dys7J8yxVH' },
+];
+
+const partners = [
+  {
+    name: 'Family First Network Association Inc.',
+    href: 'https://familyfirstnetwork.org',
+    logo: '/images/ffna-logo.png',
+  },
+  {
+    name: 'University Church Chinese Christian Fellowship',
+    href: 'https://www.ucsdlutheran.net/chinese',
+    logo: '/images/ucsd-fellowship-logo.png',
+  },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h3>聯絡我們 <span>Contact</span></h3>
+      <ul>
+        <li>
+          Email：
+          <a href="mailto:sporosmission@gmail.com">sporosmission@gmail.com</a>
+        </li>
+        <li>
+          Line 群組：
+          <a href="https://line.me/ti/g/Dys7J8yxVH" target="_blank" rel="noopener">加入群組</a>
+        </li>
+        <li>WeChat：wuyifan94</li>
+        <li>
+          電話：
+          <a href="tel:+19519032666">+1 (951)-903-2666</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>合作伙伴 <span>Partners</span></h3>
+      <ul class="partner-list">
+        {
+          partners.map((p) => (
+            <li>
+              <a href={p.href} target="_blank" rel="noopener" aria-label={p.name}>
+                <img class="partner-logo" src={p.logo} alt={p.name} loading="lazy" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>關注我們 <span>Follow</span></h3>
+      <ul>
+        {
+          socials.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener">
+                {s.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p class="seo-line">
+      聖地牙哥教會 | 聖地牙哥华人教會 | 圣地亚哥教会 | 圣地亚哥中文教会 |
+      圣地亚哥华人教会 | San Diego Chinese Church
+    </p>
+    <p class="copyright">
+      © {year} 施普絡世宣教中心 Sporos Mission Church. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-dark);
+    color: var(--color-on-dark-muted);
+    padding: var(--p-space-16) 0 var(--p-space-8);
+    margin-top: 0;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--p-space-8);
+    grid-template-columns: 1fr;
+    margin-bottom: var(--p-space-12);
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .footer-col h3 {
+    color: var(--color-on-dark);
+    font-size: 1.05rem;
+    margin-bottom: var(--p-space-4);
+  }
+
+  .footer-col h3 span {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--color-on-dark-muted);
+    margin-left: 0.4rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .partner-list {
+    gap: 0.9rem !important;
+  }
+
+  .partner-list a {
+    border-bottom: 0;
+    display: inline-block;
+    background: #fff;
+    border-radius: 0.6rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .partner-list a:hover {
+    border-bottom: 0;
+  }
+
+  .partner-logo {
+    display: block;
+    height: 2.4rem;
+    width: auto;
+    max-width: 11rem;
+    object-fit: contain;
+  }
+
+  .footer-col a {
+    color: var(--color-on-dark);
+    border-bottom: 1px dotted var(--color-border-dark);
+  }
+
+  .footer-col a:hover {
+    color: var(--p-rose-200);
+    border-bottom-color: var(--p-rose-200);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--color-border-dark);
+    padding-top: var(--p-space-6);
+    text-align: center;
+  }
+
+  .seo-line {
+    font-size: 0.82rem;
+    color: var(--color-on-dark-muted);
+    margin-bottom: var(--p-space-3);
+  }
+
+  .copyright {
+    font-size: 0.82rem;
+    margin: 0;
+  }
+</style>

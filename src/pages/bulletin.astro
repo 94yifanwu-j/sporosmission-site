@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const bulletins = await getCollection('bulletin');
+const current = bulletins.find((b) => b.id === 'current.md') ?? bulletins[0];
+
+if (!current) {
+  throw new Error('No bulletin found in src/content/bulletin/');
+}
+
+const { Content } = await render(current);
+const week = current.data.week ? `（${current.data.week}）` : '';
+---
+
+<BaseLayout
+  title={`週報 Bulletin${week} | 施普絡世宣教中心 Sporos Mission Church`}
+  description="施普絡世宣教中心每週週報：Poway 堂與 UCSD 大學城堂的主日報告事項。Weekly bulletin of Sporos Mission Church."
+>
+  <section class="section">
+    <div class="container bulletin-wrap">
+      <span class="section-kicker">週報</span>
+      <h1 class="section-title">Bulletin</h1>
+      {current.data.week && <p class="section-sub">{current.data.week}</p>}
+      <article class="card bulletin-body">
+        <Content />
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .bulletin-wrap {
+    max-width: 52rem;
+  }
+
+  .bulletin-body :global(h2) {
+    font-size: var(--text-h3);
+    margin-top: var(--p-space-8);
+    padding-bottom: var(--p-space-2);
+    border-bottom: 2px solid var(--color-brand-mist);
+  }
+
+  .bulletin-body :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .bulletin-body :global(ul),
+  .bulletin-body :global(ol) {
+    padding-left: 1.4rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .bulletin-body :global(li::marker) {
+    color: var(--color-brand);
+  }
+</style>

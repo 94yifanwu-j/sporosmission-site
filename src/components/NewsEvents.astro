@@ -1,0 +1,155 @@
+---
+/* News & Events — 最新動向 */
+const events = [
+  {
+    zh: '教會海邊野餐',
+    en: 'Church Beach Picnic',
+    date: 'July 4th · 6pm–9pm',
+    desc: '7/4 教會海邊野餐，歡迎攜家帶眷一起來。',
+    hue: 'gold',
+  },
+  {
+    zh: '復活節專題講座',
+    en: 'Easter Special Sermon',
+    date: 'Saturday, April 4th · 2pm',
+    desc: '「在亂世中如何經歷復活的大能」；復活節主日聯合崇拜（含英文翻譯）Sunday, April 5th · 10am。講員 David Lin。地點：Mount Olive Lutheran Church, 14280 Poway Rd, Poway。',
+    hue: 'rose',
+  },
+  {
+    zh: 'Kingdom Quest 兒童營會',
+    en: "Kingdom Quest — An Epic Journey to Discover God's Kingdom",
+    date: 'June 8–12',
+    desc: 'VBS（9AM–Noon）$50 / 藝術運動營（2–5PM）$250 / 全日（9AM–5PM）$300（4/30 前早鳥 $250）。Zelle 報名：sporosmission@gmail.com。5–13 歲，中英雙語，地點 Mount Olive Lutheran Church。',
+    hue: 'plum',
+  },
+];
+---
+
+<section id="news" class="section">
+  <div class="container">
+    <span class="section-kicker">最新動向</span>
+    <h2 class="section-title">News &amp; Events</h2>
+    <p class="section-sub">教會近期的活動與聚會，歡迎參加。</p>
+
+    <div class="event-grid">
+      {
+        events.map((e) => (
+          <article class={`event-card hue-${e.hue}`}>
+            {/* TODO: replace with the real event poster image */}
+            <div class="event-poster" role="img" aria-label={`${e.zh} ${e.en} 海報（待補）`}>
+              <span class="event-date">{e.date}</span>
+            </div>
+            <div class="event-body">
+              <h3>{e.zh}</h3>
+              <p class="event-en">{e.en}</p>
+              <p class="event-date-line">{e.date}</p>
+              <p class="event-desc">{e.desc}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .event-grid {
+    display: grid;
+    gap: var(--p-space-6);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .event-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .event-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: box-shadow var(--p-transition-med), transform var(--p-transition-med);
+  }
+
+  .event-card:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .event-poster {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+  }
+
+  .hue-rose .event-poster {
+    background: linear-gradient(135deg, var(--p-rose-200), var(--p-rose-400));
+  }
+
+  .hue-gold .event-poster {
+    background: linear-gradient(135deg, var(--p-gold-200), var(--p-gold-400));
+  }
+
+  .hue-plum .event-poster {
+    background: linear-gradient(135deg, var(--p-plum-300), var(--p-plum-600));
+  }
+
+  .event-desc {
+    color: var(--color-ink-soft);
+    font-size: 0.93rem;
+    line-height: 1.75;
+    margin: 0.6rem 0 0;
+  }
+
+  @media (min-width: 1024px) {
+    .event-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .event-poster::after {
+    content: "活動海報（待補）";
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .event-date {
+    position: absolute;
+    top: var(--p-space-4);
+    left: var(--p-space-4);
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--color-ink);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--p-radius-pill);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .event-body {
+    padding: var(--p-space-6);
+  }
+
+  .event-body h3 {
+    font-size: var(--text-h3);
+    margin-bottom: 0.2rem;
+  }
+
+  .event-en {
+    color: var(--color-brand);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+
+  .event-date-line {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+</style>

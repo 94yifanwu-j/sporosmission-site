@@ -1,0 +1,65 @@
+---
+import YouTubeEmbed from './YouTubeEmbed.astro';
+
+/* 最新週日崇拜 Sunday Worship + 查經 Bible Study */
+// TODO: replace these placeholder IDs with the real video IDs from
+// https://www.youtube.com/@sporos-mission-church
+const sermons = [
+  { title: '認識保羅新觀 | 劉曉亭牧師', videoId: 'TODO-1' },
+  { title: '世界這麼亂，基督徒怎麼辦？| 劉曉亭牧師 | 10/18/2026', videoId: 'TODO-2' },
+  { title: '馬利亞與多馬（約翰福音20）| 中英 | 趙炳靈牧師 | 09/13/2026', videoId: 'TODO-3' },
+  { title: '魔鬼也會敬畏神？預備心來敬畏神（1）| 劉曉亭牧師', videoId: 'TODO-4' },
+];
+
+const bibleStudy = { title: '傳統教會與多元群體的共處之道（8）| 趙炳靈牧師', videoId: 'TODO-5' };
+---
+
+<section id="watch" class="section">
+  <div class="container">
+    <span class="section-kicker">最新週日崇拜</span>
+    <h2 class="section-title">Sunday Worship</h2>
+    <p class="section-sub">
+      更多講道影片請見我們的
+      <a href="https://www.youtube.com/@sporos-mission-church" target="_blank" rel="noopener">YouTube 頻道</a>。
+    </p>
+
+    <div class="video-grid">
+      {sermons.map((v) => <YouTubeEmbed title={v.title} videoId={v.videoId} />)}
+    </div>
+
+    <h3 class="sub-heading">查經 <span>Bible Study</span></h3>
+    <div class="video-grid single">
+      <YouTubeEmbed title={bibleStudy.title} videoId={bibleStudy.videoId} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-grid {
+    display: grid;
+    gap: var(--p-space-6);
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .video-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .video-grid.single {
+      grid-template-columns: minmax(0, 36rem);
+    }
+  }
+
+  .sub-heading {
+    margin-top: var(--p-space-12);
+    font-size: var(--text-h3);
+  }
+
+  .sub-heading span {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.85em;
+    color: var(--color-muted);
+  }
+</style>

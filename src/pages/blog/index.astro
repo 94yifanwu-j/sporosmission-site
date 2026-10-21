@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const fmt = (d: Date) =>
+  `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+
+const postUrl = (p: (typeof posts)[number]) => {
+  const d = p.data.date;
+  const y = d.getUTCFullYear();
+  const m = String(d.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(d.getUTCDate()).padStart(2, '0');
+  return `/${y}/${m}/${day}/${p.data.slug}/`;
+};
+---
+
+<BaseLayout
+  title="Blog | 施普絡世宣教中心 Sporos Mission Church"
+  description="施普絡世宣教中心部落格：教會動態、劉三講古系列文章。Blog of Sporos Mission Church, San Diego Chinese Church."
+>
+  <section class="section">
+    <div class="container blog-wrap">
+      <span class="section-kicker">部落格</span>
+      <h1 class="section-title">Blog</h1>
+      <p class="section-sub">教會文章與分享。</p>
+
+      <div class="post-list">
+        {
+          posts.map((p) => (
+            <article class="card post-card">
+              <a class="post-link" href={postUrl(p)}>
+                <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
+                <h2>{p.data.title}</h2>
+                {p.data.description && <p>{p.data.description}</p>}
+                {p.data.category && <span class="post-cat">{p.data.category}</span>}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-wrap {
+    max-width: 52rem;
+  }
+
+  .post-list {
+    display: grid;
+    gap: var(--p-space-6);
+  }
+
+  .post-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .post-card:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-3px);
+  }
+
+  .post-link {
+    display: block;
+    padding: var(--p-space-6) var(--p-space-8);
+    color: var(--color-ink);
+  }
+
+  .post-link:hover {
+    color: var(--color-ink);
+  }
+
+  .post-link time {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .post-link h2 {
+    font-size: 1.35rem;
+    margin: 0.4rem 0 0.4rem;
+  }
+
+  .post-link p {
+    color: var(--color-muted);
+    margin: 0 0 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .post-cat {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-brand-strong);
+    background: var(--badge-bg);
+    border-radius: var(--p-radius-pill);
+    padding: 0.2rem 0.85rem;
+  }
+</style>
