@@ -8,7 +8,9 @@ repo. Follow these conventions on every change.
 Static website for **Sporos Mission Church** (施普絡世宣教中心), a bilingual
 Chinese/English church in San Diego. Migrated from WordPress.
 - Framework: **Astro 5**, static output, TypeScript.
-- Hosting: **Cloudflare Pages** (auto-deploys on push to `main`).
+- Hosting: **GitHub Pages** (auto-deploys on push to `main` via
+`.github/workflows/deploy-pages.yml`). **Cloudflare Pages** for
+`sporosmission.org` is planned but not yet set up.
 - Domain: `https://sporosmission.org` (see `astro.config.mjs` → `site`).
 - Design tokens: `src/styles/tokens.css` (three-layer: primitive → semantic
 → component; documented in `docs/design-system.md`).
@@ -20,8 +22,8 @@ structure: `## Poway 堂主日報告事項` and `## UCSD 大學城堂主日報�
 2. Update the frontmatter `week:` to the current week
 (e.g. `2026年10月25日當週`).
 3. Content must be **bilingual (Chinese + English)**. No lorem ipsum.
-4. Commit and push to `main`. Cloudflare Pages rebuilds and deploys
-automatically — no manual deploy step.
+4. Commit and push to `main`. GitHub Pages rebuilds and deploys
+automatically via the workflow — no manual deploy step.
 
 ## How to add a blog post
 
